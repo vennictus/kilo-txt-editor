@@ -20,16 +20,27 @@ void enableRawMode() {
   // tcgetattr gets the current terminal attributes and stores them in the orig_termios structure to save the original state of the terminal
   atexit(disableRawMode); 
   // atexit registers the disableRawMode function to be called when the program exits, ensuring that the terminal is restored to its original state
-  tcgetattr(STDIN_FILENO, &orig_termios);
-  // tcgetattr gets the current terminal attributes and stores them in the orig_termios structure to save the original state of the terminal
   struct termios raw = orig_termios; 
   // copy the original terminal attributes to the raw structure
-  raw.c_lflag &= ~(ECHO); 
-  // disable echoing of input characters
-  raw.c_lflag &= ~(ICANON); 
+  raw.c_iflag &= ~(BRKINT | ICRNL | INPCK | ISTRIP | IXON);
+  // disable various input flags:
+  // BRKINT: disable break condition interrupt  
+  // ICRNL: disable carriage return to newline translation on input
+  // INPCK: disable parity checking
+  // ISTRIP: disable stripping of the eighth bit
+  // IXON: disable software flow control (Ctrl-S and Ctrl-Q)
+  raw.c_oflag &= ~(OPOST);
+  // disable output processing
+    raw.c_cflag |= (CS8);
+  // set character size to 8 bits per byte
+  raw.c_lflag &= ~(ECHO | ICANON | IEXTEN | ISIG);
+  // disable echoing of input characters 
   // disable canonical mode
+  // disable extended input processing
+  // disable signal characters (like Ctrl-C and Ctrl-Z)
   tcsetattr(STDIN_FILENO, TCSAFLUSH, &raw); 
   // tcsetattr sets the terminal attributes to the values in the raw structure. TCSAFLUSH means to apply the changes after flushing any input that has not been read yet
+  // the 3 arguments are: the file descriptor to set the attributes for (STDIN_FILENO), the action to take (TCSAFLUSH), and a pointer to the termios structure containing the new attributes (&raw)
 }
 
 
@@ -40,9 +51,9 @@ int main() {
   char c;
   while (read(STDIN_FILENO, &c, 1) == 1 && c != 'q') {
     if (iscntrl(c)) {
-      printf("%d\n", c);
+      printf("%d\r\n", c);
     } else {
-      printf("%d ('%c')\n", c, c);
+      printf("%d ('%c')\r\n", c, c);
     }
   }
   // read one character at a time from standard input (STDIN_FILENO) into the variable c, and continue until the character 'q' is read
