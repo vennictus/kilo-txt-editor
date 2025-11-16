@@ -1,0 +1,12 @@
+# Ignore compiled binaries
+kilo
+*.o
+*.out
+*.exe
+
+
+# Ignore backups
+*~
+
+# Ignore temp files
+*.swp
