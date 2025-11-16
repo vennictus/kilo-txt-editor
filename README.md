@@ -1,4 +1,4 @@
-# ⚡ kilo-txt-editor - A Tiny Text Editor in Pure C
+# kilo-txt-editor - A Tiny Text Editor in Pure C
 
 [![Language](https://img.shields.io/badge/language-C-blue)]()
 [![Build](https://img.shields.io/badge/build-GCC-red)]()
@@ -7,26 +7,26 @@
 
 ---
 
-> ✨ **A lightweight, minimal text editor built entirely from scratch in C.**
+> **A lightweight, minimal text editor built entirely from scratch in C.**
 > Built using raw terminal handling, escape codes, custom rendering, and low-level file operations — no external libraries, no dependencies.
 
 ---
 
 ## ❤️ Features
 
-* 📝 Insert/delete characters
-* ↩️ Proper backspace behavior (with line merging)
-* 📄 Newline insertion & clean row splitting
-* 🔄 Dirty-flag tracking
-* 🎯 Cursor navigation (Arrows, Home/End, PgUp/PgDn)
-* 📜 Smooth scrolling (horizontal & vertical)
-* ➡️ Tab rendering with correct cursor alignment
-* 💾 Open, save, and "Save As"
-* 🔍 Incremental search with highlight & navigation
-* 🎨 Syntax highlighting for C/C++ (keywords, comments, strings, numbers)
-* 🧪 Highlight restoration when exiting search
-* 🧱 Status bar, message bar & welcome screen
-* 🚫 Quit protection when unsaved
+*  Insert/delete characters
+*  Proper backspace behavior (with line merging)
+*  Newline insertion & clean row splitting
+*  Dirty-flag tracking
+*  Cursor navigation (Arrows, Home/End, PgUp/PgDn)
+*  Smooth scrolling (horizontal & vertical)
+*  Tab rendering with correct cursor alignment
+*  Open, save, and "Save As"
+*  Incremental search with highlight & navigation
+*  Syntax highlighting for C/C++ (keywords, comments, strings, numbers)
+*  Highlight restoration when exiting search
+*  Status bar, message bar & welcome screen
+*  Quit protection when unsaved
 
 ---
 
